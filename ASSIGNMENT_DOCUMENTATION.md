@@ -229,7 +229,6 @@ try {
     // execution section
     SharedResources.incrementContextSwitch();
 
-    // process execution logic...
 
 } finally {
     SharedResources.cpuSemaphore.release();
@@ -297,7 +296,12 @@ It ensures that only one process uses the CPU at a time, preventing concurrent e
 
 ### What I learned about synchronization:
 
-[6-8 sentences about key concepts, challenges, insights]
+I learned that synchronization is essential in multithreaded systems to prevent race conditions.
+ReentrantLock helps protect critical sections by allowing only one thread to access shared resources at a time.
+Semaphore is useful for limiting the number of threads accessing a resource.
+I understood how race conditions can lead to incorrect results in shared counters and logs.
+I also learned the importance of using try-finally to avoid deadlocks.
+This assignment helped me understand how operating systems manage process scheduling safely.
 
 ---
 
@@ -305,15 +309,17 @@ It ensures that only one process uses the CPU at a time, preventing concurrent e
 
 Give TWO examples where synchronization is critical:
 
-**Example 1**: 
+**Example 1**:Banking systems (ATM transactions).
 
-**Example 2**: 
+**Example 2**: Database connection pools / web servers
 
 ---
 
 ### How I would explain synchronization to others:
 
-[Explain to someone who just finished Assignment 1 - use simple terms and analogies]
+Synchronization is like controlling access to a shared bathroom.
+Only one person (thread) can use it at a time (lock), or a limited number (semaphore).
+Without control, people will interfere with each other and cause wrong results.
 
 ---
 
@@ -334,15 +340,18 @@ Give TWO examples where synchronization is critical:
 ## Summary
 
 **Total time spent on assignment**: 
+10 hour
 
 **Key takeaways**: 
-1. 
-2. 
-3. 
+1. race conditions happen in shared resources
+2.mutex (ReentrantLock) protects critical sections
+3.semaphore limits concurrent access
+4.synchronization ensures correctness 
 
 **Most challenging aspect**: 
-
+understanding when to use lock vs semaphore
 **What I'm most proud of**: 
+successfully preventing race conditions and making program thread-safe
 
 ---
 
