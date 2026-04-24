@@ -153,51 +153,90 @@ in the code, I used mutex locks to protect shared resources, ensured a consisten
 ### Critical Section #1: Counter Variables
 
 **Which variables**: 
-
+The variables are:
+contextSwitchCount, completedProcessCount, totalWaitingTim
 **Why they need protection**: 
-
+These are shared variables accessed and modified by multiple threads concurrently. Without protection, race conditions can occur, leading to incorrect results such as lost updates.
 **Synchronization mechanism used**: 
-
+A mutex using ReentrantLock is used to ensure mutual exclusion.
 **Code snippet**:
-```java
-// Paste your implementation here
-```
+public static void incrementContextSwitch() {
+    lock.lock();
+    try {
+        contextSwitchCount++;
+    } finally {
+        lock.unlock();
+    }
+}
 
+public static void incrementCompletedProcess() {
+    lock.lock();
+    try {
+        completedProcessCount++;
+    } finally {
+        lock.unlock();
+    }
+}
+
+public static void addWaitingTime(long time) {
+    lock.lock();
+    try {
+        totalWaitingTime += time;
+    } finally {
+        lock.unlock();
+    }
+}
 **Justification**: 
+Using ReentrantLock ensures that only one thread can modify these variables at a time, preventing race conditions and maintaining data consistency. The try-finally block guarantees that the lock is always released, avoiding issues like deadlock.
 
 ---
 
 ### Critical Section #2: Execution Log
 
 **What resource**: 
-
+The resource is the shared executionLog list (an ArrayList).
 **Why it needs protection**: 
-
+ArrayList is not thread-safe, so concurrent modifications by multiple threads can lead to race conditions, data corruption, or runtime errors.
 **Synchronization mechanism used**: 
-
+A mutex using ReentrantLock is used to ensure only one thread accesses the list at a time.
 **Code snippet**:
-```java
-// Paste your implementation here
-```
+public static void logExecution(String message) {
+    lock.lock();
+    try {
+        executionLog.add(message);
+    } finally {
+        lock.unlock();
+    }
+}
 
 **Justification**: 
+Using ReentrantLock ensures mutual exclusion when accessing the shared list, preventing race conditions and maintaining data consistency. The try-finally block guarantees the lock is always released, avoiding potential deadlocks.
 
 ---
 
 ### Critical Section #3: CPU Semaphore
 
 **Purpose of semaphore**: 
-
+The Semaphore is used to control how many threads can access the CPU (shared execution resource) at the same time.
 **Number of permits and why**: 
-
+It is set to 1 permit (new Semaphore(1)), meaning only one thread can execute at a time. This simulates a single CPU core execution model and prevents overlapping execution of processes.
 **Where implemented**: 
-
+It is used inside the run() method of the Process class before execution starts, and released in the finally block after execution finishes.
 **Code snippet**:
-```java
-// Paste your implementation here
-```
+try {
+    SharedResources.cpuSemaphore.acquire();
+
+    // execution section
+    SharedResources.incrementContextSwitch();
+
+    // process execution logic...
+
+} finally {
+    SharedResources.cpuSemaphore.release();
+}
 
 **Effect on program behavior**: 
+It ensures that only one process uses the CPU at a time, preventing concurrent execution conflicts and making the scheduling simulation more realistic. It also helps reduce race conditions during execution.
 
 ---
 
