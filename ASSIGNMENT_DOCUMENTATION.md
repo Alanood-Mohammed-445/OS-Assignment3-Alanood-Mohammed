@@ -31,16 +31,17 @@
 
 Document your development process with **minimum 3 entries** showing progression:
 
-### Entry 1 - [Date, Time]
+### Entry 1 - [April 20, 10:30]
 **What I implemented**: 
-
+ Set up the GitHub repository and cloned the starter code. · Added ReentrantLock in SharedResources to protect contextSwitchCount,completedProcessCount, and totalWaitingTime. · Wrapped incrementContextSwitch(), incrementCompletedProcess(), and addWaitingTime() with lock/unlock in try-finally blocks
 **Challenges encountered**: 
-
+Forgot to put unlock() inside finally in the first attempt, which could cause deadlock.
 **How I solved it**: 
-
+ Reviewed the assignment instructions and corrected all locks to use try-finally
 **Testing approach**: 
-
+ Ran the simulation 5 times and observed stable results (no negative values or random jumps).
 **Time spent**: 
+one hour
 
 ---
 
