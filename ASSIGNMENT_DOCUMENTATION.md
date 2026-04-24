@@ -45,17 +45,17 @@ one hour
 
 ---
 
-### Entry 2 - [Date, Time]
+### Entry 2 - [April 23, 7:30]
 **What I implemented**: 
-
+Added ReentrantLock to protect the ArrayList<String> executionLog inside logExecution(). ·
 **Challenges encountered**: 
-
+ I don't find the correct location .
 **How I solved it**: 
-
+ by search about it.
 **Testing approach**: 
-
-**Time spent**: 
-
+run the program
+**Time spent**:
+ one hour
 ---
 
 ### Entry 3 - [Date, Time]
