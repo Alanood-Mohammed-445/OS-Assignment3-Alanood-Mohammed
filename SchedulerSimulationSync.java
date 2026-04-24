@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.Semaphore;
 
 // ANSI Color Codes for enhanced terminal output
 class Colors {
@@ -43,6 +44,7 @@ class SharedResources {
     // Example: public static final ReentrantLock lock = new ReentrantLock();
     
     // TODO #2: Add a Semaphore to limit concurrent process execution
+    public static final Semaphore cpuSemaphore = new Semaphore(1);
     // Example: public static final Semaphore cpuSemaphore = new Semaphore(1);
     
     // Method to increment context switch counter
@@ -126,6 +128,9 @@ class Process implements Runnable {
         // This ensures only allowed number of processes run simultaneously
         
         try {
+            try{
+                SharedResources.cpuSemaphore.acquire();
+            
             if (startTime == -1) {
                 startTime = System.currentTimeMillis();
             }
@@ -186,8 +191,9 @@ class Process implements Runnable {
             
         } finally {
             // TODO #4: Release CPU semaphore here
+            SharedResources.cpuSemaphore.release();
             // Always release in finally block to prevent deadlocks!
-        }
+        
     }
     
     private String createProgressBar(int progress, int width) {
@@ -207,6 +213,7 @@ class Process implements Runnable {
     public void runToCompletion() {
         // TODO: Similar synchronization needed here
         try {
+
             System.out.println(Colors.BRIGHT_CYAN + "  ⚡ " + Colors.BOLD + Colors.CYAN + name + 
                               Colors.RESET + Colors.BRIGHT_CYAN + " is the last process, running to completion" + 
                               Colors.RESET + " [" + remainingTime + "ms]");
@@ -224,6 +231,7 @@ class Process implements Runnable {
         } catch (InterruptedException e) {
             System.out.println(Colors.RED + "  ✗ " + name + " was interrupted." + Colors.RESET);
         }
+        
     }
     
     public String getName() {
