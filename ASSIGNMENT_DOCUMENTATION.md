@@ -106,8 +106,8 @@ sure the video qualty is perfect
 - What incorrect behavior could occur?
 
 **Your Answer**:
-
-[Your answer here - 4-6 sentences with code examples]
+One race condition occurs when modifying a shared variable like counter++ without synchronization. Multiple threads may read, increment, and write back simultaneously, causing lost updates because the operation is not atomic. The shared resource here is the counter, and concurrent access leads to inconsistent final values.
+counter++
 
 ---
 
@@ -116,7 +116,13 @@ sure the video qualty is perfect
 
 **Your Answer**:
 
-[Your answer here - explain your implementation choices]
+The main difference between ReentrantLock and Semaphore is that ReentrantLock provides exclusive access to a single resource, while a Semaphore allows a fixed number of threads to access a resource concurrently. ReentrantLock is reentrant, meaning the same thread can acquire the lock multiple times without deadlocking, making it ideal for protecting critical sections.
+lock.lock();
+try {
+contextSwitchCounter++;
+} finally {
+    lock.unlock();
+}
 
 ---
 
@@ -124,8 +130,8 @@ sure the video qualty is perfect
 **Q**: What is deadlock? Explain TWO prevention techniques and what you did to prevent deadlocks in your code.
 
 **Your Answer**:
-
-[Your answer here - reference try-finally blocks, lock ordering, etc.]
+deadlock is a situation where a group of threads becomes permanently blocked because each thread is waiting for a resource held by another, causing the program to stop progressing. This often occurs when multiple locks are used without proper coordination.
+in the code, I used mutex locks to protect shared resources, ensured a consistent lock acquisition order, and minimized the time each mutex was held to prevent deadlocks.
 
 ---
 
