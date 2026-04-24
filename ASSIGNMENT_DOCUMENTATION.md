@@ -60,28 +60,28 @@ run the program
 
 ### Entry 3 - [Date, Time]
 **What I implemented**: 
-
+· Added binary Semaphore (1 permit) to control concurrent CPU access as required in Task 3
 **Challenges encountered**: 
-
+find the corrict location
 **How I solved it**: 
-
+by search in the code.
 **Testing approach**: 
-
+run the code
 **Time spent**: 
-
+one hour
 ---
 
 ### Entry 4 - [Date, Time]
 **What I implemented**: 
-
+record the video and sure all code run 
 **Challenges encountered**: 
-
+record the video many times
 **How I solved it**: 
-
+===
 **Testing approach**: 
-
+sure the video qualty is perfect
 **Time spent**: 
-
+2 hour
 ---
 
 ### Entry 5 - [Date, Time]
