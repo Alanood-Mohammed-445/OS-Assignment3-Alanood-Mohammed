@@ -56,6 +56,7 @@ Added ReentrantLock to protect the ArrayList<String> executionLog inside logExec
 run the program
 **Time spent**:
  one hour
+ 
 ---
 
 ### Entry 3 - [Date, Time]
@@ -69,6 +70,7 @@ by search in the code.
 run the code
 **Time spent**: 
 one hour
+
 ---
 
 ### Entry 4 - [Date, Time]
@@ -76,12 +78,14 @@ one hour
 record the video and sure all code run 
 **Challenges encountered**: 
 record the video many times
+
 **How I solved it**: 
 ===
 **Testing approach**: 
 sure the video qualty is perfect
 **Time spent**: 
 2 hour
+
 ---
 
 ### Entry 5 - [Date, Time]
@@ -243,52 +247,62 @@ It ensures that only one process uses the CPU at a time, preventing concurrent e
 
 ### Test 1: Consistency Check
 **What I tested**: Running program multiple times to verify consistent results
+consistency of results after adding synchronization
 
 **Testing procedure**: 
 ```bash
 # Commands used (run the program at least 5 times)
 ```
+java SchedularSimulationSync
+
 
 **Results**: 
 (Show that running multiple times produces consistent, correct results)
-
+context switches :42
+completed processes :5 
+total wating time :1240ms
+*
 **Why synchronization is necessary**: 
-(Explain what race conditions COULD occur without synchronization, even if you didn't observe them. Explain which shared resources need protection and why.)
+without synchronization counter would loss updates.
 
-**Conclusion**: 
+**Conclusion**:
+synchronization succeeded results are now stable error-free.
 
 ---
 
 ### Test 2: Exception Testing
-**What I tested**: Checking for ConcurrentModificationException
-
+**What I tested**: 
+Checking for ConcurrentModificationException
 **Testing procedure**: 
-
+run the program 5+ times with diffrent process count.
 **Results**: 
-
+no exception occurred
 **What this proves**: 
+the lock on executinglog prevent concurrent modification.
 
 ---
 
 ### Test 3: Correctness Verification
-**What I tested**: Verifying correct final values (total burst time, context switches, etc.)
-
+**What I tested**:
+Verifying correct final values (total burst time, context switches, etc.)
 **Expected values**: 
-
 **Actual values**: 
-
+completed processes :5 
+total wating time :1240ms
 **Analysis**: 
+all values are logical and match expectations,confirming correct synchronization
 
 ---
 
 ### Test 4: Different Scenarios
 **Scenario tested**: [e.g., different time quantum, more processes, etc.]
-
+incresased number of process from 3 to 10 and decreased time quantem from 100ms to 50ms
 **Purpose**: 
-
+to verify synchronization holds under different loads and scheduling parametrs.
 **Results**: 
-
+no race condition, no exceptions .
 **What I learned**: 
+proper the synchronization makes the simulation scalable and reliable.
 
 ---
 
@@ -328,12 +342,12 @@ Without control, people will interfere with each other and cause wrong results.
 **Repository URL**: 
 
 **Number of commits**: 
-
+   13
 **Commit messages**: 
-1. 
-2. 
-3. 
-4. 
+1. Set My Student id:445052096
+2. Task 1
+3. Task2
+4. Task3
 
 ---
 
